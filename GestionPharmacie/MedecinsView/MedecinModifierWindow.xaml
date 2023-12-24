@@ -1,0 +1,45 @@
+﻿<Window x:Class="GestionPharmacie.MedecinsView.ModifierMedecin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:MyControls="clr-namespace:MyControlLibrary;assembly=MyControlLibrary"
+        xmlns:local="clr-namespace:GestionPharmacie.MedecinsView"
+        mc:Ignorable="d"
+        Title="ModifierMedecin" Height="218" Width="430.484">
+    <Border BorderBrush="Gray" Background="#FFF1F1F1" BorderThickness="2" Margin="2" CornerRadius="3" >
+        <StackPanel  Margin="5">
+            <Label Margin="5" BorderThickness="2,0,0,0" BorderBrush="Gray" FontWeight="Bold" FontSize="14" >Modifier Médecin :</Label>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Label  Grid.Column="0" FontWeight="Bold" Grid.Row="0" HorizontalAlignment="Center"
+                VerticalAlignment="Center">Nom :</Label>
+                <Label  Grid.Column="0" FontWeight="Bold" Grid.Row="1" HorizontalAlignment="Center"
+                VerticalAlignment="Center" >Prénom :</Label>
+                <Label  Grid.Column="0" FontWeight="Bold" Grid.Row="2" HorizontalAlignment="Center"
+                VerticalAlignment="Top">Adresse :</Label>
+                <TextBox x:Name="txtNom" FontWeight="Bold" Grid.Column="1" Grid.Row="0" Height="22"
+                 VerticalAlignment="Center"/>
+                <TextBox x:Name="txtPrenom" FontWeight="Bold" Grid.Column="1" Grid.Row="1" Height="22"
+                 VerticalAlignment="Center"/>
+                <TextBox x:Name="txtAdresse" FontWeight="Bold"   Grid.Column="1" Grid.Row="2" Height="42"
+                 VerticalAlignment="Center"  AcceptsReturn="True" TextWrapping="Wrap"/>
+                <StackPanel Grid.Column="1" Grid.Row="3" 
+                    HorizontalAlignment="Right" VerticalAlignment="Center" Orientation="Horizontal">
+                    <MyControls:Button x:Name="BtnValider"  FontWeight="Bold" Text="Valider" MouseDown="BtnValider_MouseDown" Height="22" Margin="2"/>
+                    <MyControls:Button x:Name="BtnSupprimer" Text="Supprimer"  FontWeight="Bold" MouseDown="BtnSupprimer_MouseDown" Height="22" Margin="2"/>
+                    <MyControls:Button x:Name="BtAnnuler" Text="Annuler" MouseDown="BtAnnuler_MouseDown" FontWeight="Bold"  Height="22" Margin="2"/>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+    </Border>
+</Window>

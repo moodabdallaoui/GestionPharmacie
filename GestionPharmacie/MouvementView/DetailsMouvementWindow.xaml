@@ -1,0 +1,104 @@
+﻿<Window x:Class="GestionPharmacie.MouvementView.DetailsMouvementWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:MyControls="clr-namespace:MyControlLibrary;assembly=MyControlLibrary"
+        xmlns:local="clr-namespace:GestionPharmacie.MouvementView"
+        mc:Ignorable="d"
+        Title="DetailsMouvementWindow" Height="373.5" Width="734.935">
+    <Border BorderBrush="Gray" Background="#FFF1F1F1" BorderThickness="2" Margin="2" CornerRadius="3" >
+        <StackPanel  Margin="5">
+            <Label Margin="5" BorderThickness="2,0,0,0" BorderBrush="Gray" FontWeight="Bold" FontSize="14" Content="Détails mouvement :" />
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Label FontWeight="Bold"  Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center"
+                VerticalAlignment="Center" Content="Consernant :"/>
+                <Label FontWeight="Bold"   Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center"
+                VerticalAlignment="Center" Content="Type de mouvement :"/>
+                <Label  Grid.Column="0"  FontWeight="Bold" Grid.Row="2" HorizontalAlignment="Center"
+                VerticalAlignment="Center" Content="Date :"/>
+                <Label x:Name="lablPersonnel" FontWeight="Bold"  Visibility="Hidden"  Grid.Column="2" Grid.Row="0" HorizontalAlignment="Center"
+                VerticalAlignment="Center" Content="Prersonnel :"/>
+                <Label x:Name="lablLieu" Visibility="Hidden"  FontWeight="Bold"  Grid.Column="2" Grid.Row="1" HorizontalAlignment="Center"
+                VerticalAlignment="Center" Content="Lieu :"/>
+                <Label x:Name="lablService" Visibility="Hidden" FontWeight="Bold"  Grid.Column="2" Grid.Row="2" HorizontalAlignment="Center"
+                VerticalAlignment="Center" Content="Service :"/>
+                <ComboBox x:Name="CombPersonnels" Visibility="Hidden"  FontWeight="Bold" Grid.Column="3" Grid.Row="0" Height="22"
+                   VerticalAlignment="Center"/>
+                <TextBox x:Name="txtLieu" Visibility="Hidden" FontWeight="Bold"  Grid.Column="3" Grid.Row="1" Height="22"
+                 VerticalAlignment="Center"/>
+                <TextBox x:Name="txtService" Visibility="Hidden" Grid.Column="3" FontWeight="Bold"  Grid.Row="2" Height="22"
+                 VerticalAlignment="Center"/>
+                <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4" Orientation="Vertical">
+                    <Label FontWeight="Bold"  Content="Détails mouvement :"></Label>
+                    <StackPanel Orientation="Horizontal">
+                        <DataGrid  FontWeight="Bold"  Height="150" IsReadOnly="False"  CanUserAddRows="False"   
+                           AutoGenerateColumns="False"  
+                          x:Name="datagridMedicament" HorizontalAlignment="Left"    >
+                            <DataGrid.ColumnHeaderStyle>
+                                <Style TargetType="{x:Type DataGridColumnHeader}">
+                                    <Setter Property="Background" Value="#FF4CAF50"></Setter>
+                                    <Setter Property="Foreground" Value="White"></Setter>
+                                    <Setter Property="BorderBrush" Value="Black"></Setter>
+                                    <Setter Property="Height" Value="25"></Setter>
+                                    <Setter Property="BorderThickness" Value="1"></Setter>
+                                </Style>
+                            </DataGrid.ColumnHeaderStyle>
+                            <DataGrid.CellStyle>
+                                <Style TargetType="DataGridCell">
+                                    <Style.Triggers>
+                                        <Trigger Property="IsSelected"  Value="True" >
+                                            <Setter Property="Background" Value="#FFAADEAC" />
+                                            <Setter Property="Foreground" Value="Black"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </DataGrid.CellStyle>
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="  Médicament" Width="100" Binding="{Binding Path=Designation ,Mode=TwoWay}" ></DataGridTextColumn>
+                                <DataGridTextColumn Header="  Quantité" Width="60" Binding="{Binding Path=QuantiterStock ,Mode=TwoWay}" ></DataGridTextColumn>
+                                <DataGridTemplateColumn>
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <MyControls:Button x:Name="BtnSupprimerMedicament" MouseDown="BtnSupprimerMedicament_MouseDown" Tag="{Binding}" Text="Supprimer" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <MyControls:Button x:Name="BtnAdd"  FontWeight="Bold" Text="Add" Margin="7" MouseDown="BtnAdd_MouseDown" VerticalAlignment="Center" />
+                        <ListBox x:Name="listBoxMedicament"  FontWeight="Bold"  Height="150" Width="143"  Margin="7,0,0,0" ></ListBox>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="1" Grid.Row="0" >
+                    <RadioButton x:Name="RadioPerosnnel"  FontWeight="Bold"  IsChecked="False" Checked="RadioPerosnnel_Checked" Margin="2" >Personnel</RadioButton>
+                    <RadioButton x:Name="RadioAutre"  FontWeight="Bold"  IsChecked="True" Checked="RadioAutre_Checked" Margin="2" >Autre</RadioButton>
+                </StackPanel>
+                <ComboBox x:Name="CombTypeMouevemnt"  FontWeight="Bold"  SelectedIndex="1"  Grid.Column="1" Grid.Row="1" Height="22"
+                   VerticalAlignment="Center">
+                    <ComboBoxItem>Entrée</ComboBoxItem>
+                    <ComboBoxItem>Sortie</ComboBoxItem>
+                </ComboBox>
+                <DatePicker x:Name="DpDateMouvement" FontWeight="Bold"  Height="24" Grid.Column="1" Grid.Row="2" />
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" Grid.Column="2" Grid.ColumnSpan="2"  Grid.Row="4" HorizontalAlignment="Right" >
+                    <MyControls:Button x:Name="BtnSupprimerMouvement"  FontWeight="Bold" MouseDown="BtnSupprimerMouvement_MouseDown" Margin="2"  Text="Supprimer"/>
+                    <MyControls:Button x:Name="BtnValider" Margin="2" FontWeight="Bold"  MouseDown="BtnValider_MouseDown" Text="Valider"/>
+                    <MyControls:Button x:Name="BtnAnnuler" Text="Annuler" FontWeight="Bold"  MouseDown="BtnAnnuler_MouseDown" Margin="2"/>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+    </Border>
+</Window>

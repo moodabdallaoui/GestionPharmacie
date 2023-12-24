@@ -1,0 +1,263 @@
+﻿<Page x:Class="GestionPharmacie.PersonnelsView.PersonnelPrincipalePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:MyControls="clr-namespace:MyControlLibrary;assembly=MyControlLibrary"
+      xmlns:local="clr-namespace:GestionPharmacie.PersonnelsView"
+      mc:Ignorable="d" 
+      Title="PersonnelPrincipalePage" >
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="4">
+            <Label Margin="5" BorderThickness="2,0,0,0" BorderBrush="Gray" FontWeight="Bold" FontSize="14" Content=" Personnels :" />
+            <Expander x:Name="ExpNvPerso" Header="Nouveau personnel:" FontWeight="Bold">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Label  Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center"
+                VerticalAlignment="Center" Content="Matricule :"/>
+                    <Label  Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center"
+                VerticalAlignment="Center" Content="Nom :"/>
+                    <Label  Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center"
+                VerticalAlignment="Center" Content="Prenom :"/>
+                    <Label  Grid.Column="0" Grid.Row="3" HorizontalAlignment="Center"
+                VerticalAlignment="Center" Content="Téléphone :"/>
+                    <Label  Grid.Column="2" Grid.Row="0" HorizontalAlignment="Center"
+                VerticalAlignment="Center" Content="Situation :"/>
+                    <Label  Grid.Column="2" Grid.Row="1" HorizontalAlignment="Center"
+                VerticalAlignment="Center" Content="N° Contrat :"/>
+                    <Label  Grid.Column="2" Grid.Row="2" HorizontalAlignment="Center"
+                VerticalAlignment="Center" Content="Date  contrat :"/>
+                    <Label  Grid.Column="2" Grid.Row="3" HorizontalAlignment="Center"
+                VerticalAlignment="Center" Content="Adresse :"/>
+                    <TextBox x:Name="txtMatricule" Grid.Column="1" Grid.Row="0" Height="22"
+                 VerticalAlignment="Center"/>
+                    <TextBox x:Name="txtNom" Grid.Column="1" Grid.Row="1" Height="22"
+                 VerticalAlignment="Center"/>
+                    <TextBox x:Name="txtPrenom" Grid.Column="1" Grid.Row="2" Height="22"
+                 VerticalAlignment="Center"/>
+                    <TextBox x:Name="txtTelephone" Grid.Column="1" Grid.Row="3" Height="22"
+                 VerticalAlignment="Center"/>
+                    <ComboBox x:Name="CombSituation" Grid.Column="3" Grid.Row="0" Height="22"
+                  VerticalAlignment="Center">
+                        <ComboBoxItem>Marié(e)</ComboBoxItem>
+                        <ComboBoxItem>Célibatiaire</ComboBoxItem>
+                        <ComboBoxItem>Fiancé(e)</ComboBoxItem>
+                        <ComboBoxItem>Divorcé(e)</ComboBoxItem>
+                        <ComboBoxItem>Veuf(v)</ComboBoxItem>
+                    </ComboBox>
+                    <TextBox x:Name="txtNumContrat" Grid.Column="3" Grid.Row="1" Height="22"
+                 VerticalAlignment="Center"/>
+                    <DatePicker x:Name="DpDateContrat" Height="24" Grid.Column="3" Grid.Row="2" />
+                    <TextBox x:Name="txtAdresse" Grid.Column="3" Grid.Row="3" Height="42"
+                 VerticalAlignment="Center" AcceptsReturn="True" TextWrapping="Wrap"/>
+                    <StackPanel Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="2"
+                    HorizontalAlignment="Right" VerticalAlignment="Center" Orientation="Horizontal">
+                        <MyControls:Button x:Name="BtnAjouter" MouseDown="BtnAjouter_MouseDown" Text="Ajouter" Height="22" Margin="2"/>
+                        <MyControls:Button x:Name="BtAnnuler" MouseDown="BtAnnuler_MouseDown" Text="Annuler" Height="22" Margin="2"/>
+                    </StackPanel>
+                </Grid>
+            </Expander>
+            <Expander Header="Liste des personnels:" FontWeight="Bold">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Margin="3" HorizontalAlignment="Left" Orientation="Horizontal" >
+                        <TextBox Margin="2" x:Name="txtRecherche" Height="22" Width="100"/>
+                        <ComboBox Width="100" Margin="2" Height="22" x:Name="combChoixRecherche">
+                            <ComboBoxItem>Matricule</ComboBoxItem>
+                            <ComboBoxItem>N° contrat</ComboBoxItem>
+                            <ComboBoxItem>Nom</ComboBoxItem>
+                            <ComboBoxItem>Prenom</ComboBoxItem>
+                        </ComboBox>
+                        <MyControls:Button  x:Name="BtnRechercher" MouseDown="BtnRechercher_MouseDown" Margin="2" Text="Recherche"/>
+                        <MyControls:Button Margin="2" x:Name="BtnTous" MouseDown="BtnTous_MouseDown" Text="Tous"/>
+                    </StackPanel>
+                    <DataGrid IsReadOnly="True" Grid.Row="1"
+                          CanUserResizeRows="True" CanUserAddRows="False" 
+                          CanUserDeleteRows="False" CanUserReorderColumns="False"  
+                          HorizontalScrollBarVisibility="Visible"  AutoGenerateColumns="False"  
+                          x:Name="datagridPersonnels" HorizontalAlignment="Left"  >
+                        <DataGrid.ColumnHeaderStyle>
+                            <Style TargetType="{x:Type DataGridColumnHeader}">
+                                <Setter Property="Background" Value="#FF4CAF50"></Setter>
+                                <Setter Property="Foreground" Value="White"></Setter>
+                                <Setter Property="BorderBrush" Value="Black"></Setter>
+                                <Setter Property="Height" Value="25"></Setter>
+                                <Setter Property="BorderThickness" Value="1"></Setter>
+                            </Style>
+                        </DataGrid.ColumnHeaderStyle>
+                        <DataGrid.CellStyle>
+                            <Style TargetType="DataGridCell">
+                                <Style.Triggers>
+                                    <Trigger Property="IsSelected"  Value="True" >
+                                        <Setter Property="Background" Value="#FFAADEAC" />
+                                        <Setter Property="Foreground" Value="Black"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </DataGrid.CellStyle>
+                        <DataGrid.Columns >
+                            <DataGridTemplateColumn Width="67" >
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <MyControls:Button Tag="{Binding}" x:Name="BtnEdition" VerticalAlignment="Top" Margin="2" Text="Edition" MouseDown="BtnEdition_MouseDown"  />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Header=" Matricule" Width="60" >
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBox Text="{Binding Path=Matricule ,Mode=OneWay}" VerticalAlignment="Top"    Height="22" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Header="    Nom et prenom " Width="120"    >
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBox VerticalAlignment="Top"  Text="{Binding Mode=OneWay}"   Height="22" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Header="    Situation" Width="75"  >
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBox VerticalAlignment="Top"  Text="{Binding Path=Situation ,Mode=OneWay}"   Height="22" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Header="    Coordonnées" Width="170">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Grid VerticalAlignment="Top">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="55"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="*"/>
+                                                <RowDefinition Height="*"/>
+                                            </Grid.RowDefinitions>
+                                            <Label Grid.Column="0" Grid.Row="0" >Tel :</Label>
+                                            <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Path=Tel ,Mode=OneWay}"   Height="22" />
+                                            <Label Grid.Column="0" Grid.Row="1">Adresse :</Label>
+                                            <TextBox Grid.Column="1" ScrollViewer.VerticalScrollBarVisibility="Auto" Grid.Row="1" Text="{Binding Path=Adresse ,Mode=OneWay}"  IsReadOnly="True" Height="42" AcceptsReturn="True" TextWrapping="Wrap"/>
+                                        </Grid>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Header="    Contrat" Width="143">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Grid Height="50" VerticalAlignment="Top">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="40"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="*"/>
+                                                <RowDefinition Height="*"/>
+                                            </Grid.RowDefinitions>
+                                            <Label Grid.Column="0" Grid.Row="0" >N° :</Label>
+                                            <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Path=NumContrat ,Mode=OneWay }"   Height="22" />
+                                            <Label  Grid.Column="0" Grid.Row="1">Date :</Label>
+                                            <DatePicker Grid.Column="1" Grid.Row="1" SelectedDate="{Binding Path=DateContrat ,Mode=OneWay}"   Height="25" />
+                                        </Grid>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Width="210" Header="   Dossier médicale">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate >
+                                        <StackPanel VerticalAlignment="Top" Orientation="Vertical">
+                                            <Expander Header="Declarations de maladie">
+                                                <DataGrid ItemsSource="{Binding Path=Declarations ,Mode=OneWay}" IsReadOnly="True" 
+                                                      AutoGenerateColumns="False"  
+                                                      HorizontalAlignment="Center">
+                                                    <DataGrid.CellStyle>
+                                                        <Style TargetType="DataGridCell">
+                                                            <Style.Triggers>
+                                                                <Trigger Property="IsSelected"  Value="True" >
+                                                                    <Setter Property="Background" Value="#FFAADEAC" />
+                                                                    <Setter Property="Foreground" Value="Black"/>
+                                                                </Trigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </DataGrid.CellStyle>
+                                                    <DataGrid.Columns>
+
+                                                        <DataGridTextColumn Header="    Id" Width="40"  Binding="{Binding Path=Id ,Mode=OneWay}"  ></DataGridTextColumn>
+                                                        <DataGridTemplateColumn Header="  Date" Width="110" >
+                                                            <DataGridTemplateColumn.CellTemplate >
+                                                                <DataTemplate>
+                                                                    <DatePicker  SelectedDate="{Binding Path=DateConsultation ,Mode=OneWay}"   Height="25" />
+                                                                </DataTemplate>
+                                                            </DataGridTemplateColumn.CellTemplate>
+                                                        </DataGridTemplateColumn>
+                                                        <DataGridTemplateColumn >
+                                                            <DataGridTemplateColumn.CellTemplate>
+                                                                <DataTemplate>
+                                                                    <MyControls:Button x:Name="BtnDetails" Tag="{Binding Mode=OneWay}" MouseDown="BtnDetails_MouseDown"   Text="Details"/>
+                                                                </DataTemplate>
+                                                            </DataGridTemplateColumn.CellTemplate>
+                                                        </DataGridTemplateColumn>
+                                                    </DataGrid.Columns>
+                                                </DataGrid>
+                                            </Expander>
+                                            <Expander Header="Mouvements effectués">
+                                                <DataGrid ItemsSource="{Binding Path=PersonnelMouvements ,Mode=OneWay}" IsReadOnly="True"   AutoGenerateColumns="False"  
+                                                      HorizontalAlignment="Center">
+                                                    <DataGrid.CellStyle>
+                                                        <Style TargetType="DataGridCell">
+                                                            <Style.Triggers>
+                                                                <Trigger Property="IsSelected"  Value="True" >
+                                                                    <Setter Property="Background" Value="#FFAADEAC" />
+                                                                    <Setter Property="Foreground" Value="Black"/>
+                                                                </Trigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </DataGrid.CellStyle>
+                                                    <DataGrid.Columns>
+                                                        <DataGridTextColumn Header="    Id " Width="40" Binding="{Binding Path=Id ,Mode=OneWay }"   ></DataGridTextColumn>
+                                                        <DataGridTemplateColumn Header="  Date" Width="110" >
+                                                            <DataGridTemplateColumn.CellTemplate >
+                                                                <DataTemplate>
+                                                                    <DatePicker  SelectedDate="{Binding Path=Date ,Mode=OneWay}"   Height="25" />
+                                                                </DataTemplate>
+                                                            </DataGridTemplateColumn.CellTemplate>
+                                                        </DataGridTemplateColumn>
+                                                        <DataGridTemplateColumn >
+                                                            <DataGridTemplateColumn.CellTemplate>
+                                                                <DataTemplate>
+                                                                    <MyControls:Button x:Name="BtnDetailsMouvement" Tag="{Binding Mode=OneWay}" MouseDown="BtnDetailsMouvement_MouseDown"   Text="Details"/>
+                                                                </DataTemplate>
+                                                            </DataGridTemplateColumn.CellTemplate>
+                                                        </DataGridTemplateColumn>
+                                                    </DataGrid.Columns>
+                                                </DataGrid>
+                                            </Expander>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </Expander>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

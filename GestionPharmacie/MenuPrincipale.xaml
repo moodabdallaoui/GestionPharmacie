@@ -1,0 +1,83 @@
+﻿<Window x:Class="GestionPharmacie.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GestionPharmacie"
+        xmlns:MyControls="clr-namespace:MyControlLibrary;assembly=MyControlLibrary"
+        mc:Ignorable="d"
+        Title="Service medico-social" Height="503.638" Width="810.5" WindowState="Maximized">
+    <Grid Background="#FFF1F1F1">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="140"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="120"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Border Margin="3" Height="103" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" BorderThickness="2" BorderBrush="#FF616161" CornerRadius="3">
+            <Image  HorizontalAlignment="Left" VerticalAlignment="Center" Width="200" Height="100" Source="lafarge_logo.png">
+                
+            </Image>  
+        </Border>
+        <Border Margin="3"   Grid.Column="0" Grid.Row="1"  BorderThickness="2" BorderBrush="#FF616161" CornerRadius="3">
+            <StackPanel>
+                <Label Padding="0" Content="         Menu" Background="#FF4CAF50" Foreground="White" FontSize="16" BorderThickness="0,0,0,2" BorderBrush="#FF616161" Height="26" FontStretch="ExtraCondensed" FontWeight="Medium"/>
+                <MyControls:MenuItem x:Name="BtnDeclaration" Text="Decalration" MouseDown="BtnDeclaration_MouseDown"/>
+                <MyControls:MenuItem x:Name="BtnPersonnels" Text="Personnels" MouseDown="BtnPersonnels_MouseDown"/>
+                <MyControls:MenuItem  x:Name="BtnMedecins" Text="Medecins" MouseDown="BtnMedecins_MouseDown" />
+                <MyControls:MenuItem  x:Name="BtnMouvements" Text="Mouvements" MouseDown="BtnMouvements_MouseDown" />
+                <MyControls:MenuItem x:Name="BtnStock" Text="Stock" MouseDown="BtnStock_MouseDown"/>
+            </StackPanel>
+        </Border>
+        <Border Margin="3" Background="White" Height="103" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" BorderThickness="2" BorderBrush="#FF616161" CornerRadius="3">
+            <Grid >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="220"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Image Grid.Column="0" HorizontalAlignment="Left"  VerticalAlignment="Center" Width="200" Height="100" Source="lafarge_logo.png">
+                </Image>
+                <TextBlock Margin="5" Grid.Column="1" FontSize="16" ><Run Text="Service medico-social"/><Run Text=" :"/><LineBreak/><Run FontSize="12" Text="-Gestion des déclarations du maladie."/><LineBreak/><Run FontSize="12" Text="-Gestion de stock."/><LineBreak/><Run FontSize="12" Text="-Gestion des mouvements."/><LineBreak/><Run FontSize="12" Text="-Gestion des personnels ."/></TextBlock>
+                <Expander VerticalAlignment="Bottom" Header="Contacte :" FontSize="11" Margin="5" Grid.Column="2">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Padding="0"  Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center"
+                VerticalAlignment="Center" Content="Nom et prenom :"/>
+                        <Label Padding="0"  Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center"
+                VerticalAlignment="Center" Content="Tel :"/>
+                        <Label Padding="0"  Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center"
+                VerticalAlignment="Center" Content="Email :"/>
+                        <Label Padding="0"  Grid.Column="0" Grid.Row="3" HorizontalAlignment="Center"
+                VerticalAlignment="Center" Content="Site web :"/>
+                        <TextBox   Grid.Column="1" Grid.Row="0" 
+                 VerticalAlignment="Center" Text="ELABBADE Mouad"/>
+                        <TextBox  Grid.Column="1" Grid.Row="1" 
+                 VerticalAlignment="Center" Text="0602668546"/>
+                        <TextBox  Grid.Column="1" Grid.Row="2" 
+                 VerticalAlignment="Center" Text="elabbademouad@gmail.com"/>
+                        <TextBox  Grid.Column="1" Grid.Row="3" 
+                 VerticalAlignment="Center" Text="http://elabbademouad.blogspot.com/"/>
+                    </Grid>
+                </Expander>
+            </Grid>
+        </Border>
+        <Border Margin="3"   Grid.Column="1" Grid.Row="1"  BorderThickness="2" BorderBrush="#FF616161" CornerRadius="3">
+            <Frame NavigationUIVisibility="Hidden"  x:Name="Conteneur">
+                
+            </Frame>
+        </Border>
+
+    </Grid>
+</Window>
